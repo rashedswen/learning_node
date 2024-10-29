@@ -7,7 +7,6 @@
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -17,11 +16,14 @@
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "express-rate-limit": "^5.3.0",
+    "express-validator": "^7.2.0",
     "helmet": "^4.6.0",
     "http-status-codes": "^2.1.4",
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.2",
+    "mongoose-i18n-localize": "^0.3.0",
+    "mongoose-plugin-autoinc-fix": "^1.2.1",
     "rate-limiter": "^0.2.0",
     "swagger-ui-express": "^4.1.6",
     "xss-clean": "^0.1.1",

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+var mongooseI18n = require('mongoose-i18n-localize');
+const { autoIncrement } = require('mongoose-plugin-autoinc-fix')
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -25,6 +27,8 @@ const UserSchema = new mongoose.Schema({
     },
 });
 
+UserSchema.plugin(mongooseI18n, { locales: ['en', 'ar'] });
+
 UserSchema.pre('save', async function () {
     const salt = await bcrypt.genSalt(10)
     this.password = await bcrypt.hash(this.password, salt)
@@ -41,4 +45,5 @@ UserSchema.methods.comparePassword = async function (canditatePassword) {
     return isMatch;
 }
 
+UserSchema.plugin(autoIncrement, 'User');
 module.exports = mongoose.model('User', UserSchema);
