@@ -1,9 +1,12 @@
 const { StatusCodes } = require('http-status-codes')
+const i18n = require('../i18n/language')
+
+
 const errorHandlerMiddleware = (err, req, res, next) => {
 
   let customError = {
     statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
-    msg: err.message || 'Something went wrong try again later'
+    msg: err.message || i18n[req.lang].SOMETHING_WENT_WRONG
   }
 
   // if (err instanceof CustomAPIError) {
@@ -14,11 +17,12 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     customError.statusCode = 400
   }
   if (err.code && err.code == 11000) {
-    customError.msg = `Duplicated ${Object.keys(err.keyValue)} field, please choose another value`;
+    customError.msg = i18n[req.lang].DUPLICATED_FIELD.replace('{field}', Object.keys(err.keyValue))
     customError.statusCode = 400
   }
   if (err.name === 'CastError') {
-    customError.msg = `No item found with id: ${err.value}`;
+    const lang = req.lang;
+    customError.msg = i18n[lang].NO_JOB_WITH_THIS_ID.replace('{id}', err.value);
     customError.statusCode = 404
   }
 

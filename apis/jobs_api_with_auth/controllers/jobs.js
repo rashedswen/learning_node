@@ -4,6 +4,7 @@ const { BadRequestError, NotFoundError } = require('../errors')
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const express = require('express');
+const i18n = require('../i18n/language')
 
 
 const getAllJobs = async (req, res) => {
@@ -15,7 +16,8 @@ const getJob = async (req, res) => {
     const { user: { userId }, params: { id: jobId } } = req
     const job = await Job.findOne({ _id: jobId, createdBy: userId })
     if (!job) {
-        throw new NotFoundError('There is no job with this id')
+        // const lang = req.header.lang;
+        throw new NotFoundError(i18n[req.lang].NO_JOB_WITH_THIS_ID.replace('{id}', jobId));
     }
     res.status(StatusCodes.OK).json({ job })
 }
@@ -35,11 +37,11 @@ const updateJob = async (req, res) => {
         } = req
 
     if (company === '' || position === '') {
-        throw new BadRequestError('Company or position cannot be empty')
+        throw new BadRequestError(i18n[req.lang].COMPANY_OR_POSITION_CANNOT_BE_EMPTY)
     }
     const job = await Job.findOneAndUpdate({ _id: jobId, createdBy: userId }, req.body, { new: true, runValidators: true },)
     if (!job) {
-        throw new NotFoundError('There is no job with this id')
+        throw new NotFoundError(i18n[req.lang].NO_JOB_WITH_THIS_ID.replace('{id}', jobId));
     }
     res.status(StatusCodes.OK).json({ job })
 }
@@ -53,7 +55,7 @@ const deleteJob = async (req, res) => {
     const job = await Job.findOneAndRemove({ _id: jobId, createdBy: userId })
 
     if (!job) {
-        throw new NotFoundError(`There is no job with this ${jobId}`)
+        throw new NotFoundError(i18n[req.lang].NO_JOB_WITH_THIS_ID.replace('{id}', jobId));
     }
 
     res.status(StatusCodes.OK).send()

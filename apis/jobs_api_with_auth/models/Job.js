@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongooseI18n = require('mongoose-i18n-localize');
 
 const JobSchema = new mongoose.Schema({
     company: {
@@ -18,11 +19,16 @@ const JobSchema = new mongoose.Schema({
         default: 'pending'
     },
     createdBy: {
-        type: mongoose.Types.ObjectId,
+        type: Number,
         ref: 'User',
         required: [true, 'Please Provide user']
     }
 }, { timestamps: true })
+
+JobSchema.plugin(mongooseI18n, {
+    locales: ['en', 'ar']
+});
+
 
 
 module.exports = mongoose.model('Job', JobSchema)
