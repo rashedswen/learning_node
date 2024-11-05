@@ -7,8 +7,8 @@ const { check, query } = require('express-validator');
 const checkValidation = require('../middleware/validation');
 
 const postJobValidation = [
-    check('company', i18n[req.lang].FIELD_IS_NOT_VALID.replace('{field}', 'Company')).notEmpty(),
-    check('position', i18n[req.lang].FIELD_IS_NOT_VALID.replace('{field}', 'Position')).notEmpty(),
+    check('company', 'FIELD_IS_NOT_VALID').notEmpty(),
+    check('position', 'FIELD_IS_NOT_VALID').notEmpty(),
 ];
 
 

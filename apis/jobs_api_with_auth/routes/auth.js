@@ -8,8 +8,8 @@ const { login, register } = require('../controllers/auth');
 const checkValidation = require('../middleware/validation');
 
 const bodyValidation = [
-    check('email', i18n[req.lang].FIELD_IS_NOT_VALID.replace('{field}', 'Email')).isEmail().notEmpty(),
-    check('password', i18n[req.lang].FIELD_IS_NOT_VALID.replace('{field}', 'Password')).notEmpty().isLength({ min: 6, max: 16 })
+    check('email', 'FIELD_IS_NOT_VALID').isEmail().notEmpty(),
+    check('password', 'FIELD_IS_NOT_VALID').notEmpty().isLength({ min: 6, max: 16 })
 ]
 // const bodyPasswordValidation = () => body('passwprd').notEmpty().trim();
 
