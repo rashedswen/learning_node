@@ -20,8 +20,11 @@ const jobsRouter = require('./routes/jobs')
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 const authenticateUser = require('./middleware/authentication');
+// i don't think it's best practice to use middleware for language here but i did it
+const language = require('./middleware/language')
 
 app.set('trust proxy', 1)
+app.use(language)
 app.use(
   rateLimiter({
     windowMs: 15 * 60 * 1000,
