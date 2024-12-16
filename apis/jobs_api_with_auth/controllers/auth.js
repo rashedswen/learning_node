@@ -2,7 +2,7 @@ const { validationResult } = require('express-validator');
 const { BadRequestError, UnauthenticatedError } = require('../errors');
 const User = require('../models/User');
 const { StatusCodes } = require('http-status-codes')
-const i18n = require('../i18n/language')
+const i18n = require('../i18n/language').default
 
 const register = async (req, res) => {
     const result = validationResult(req);

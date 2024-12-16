@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator");
-const i18n = require('../i18n/language')
+const i18n = require('../i18n/language').default
 
 const checkValidation = (req, res, next) => {
     const result = validationResult(req);

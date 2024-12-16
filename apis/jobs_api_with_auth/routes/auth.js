@@ -1,6 +1,6 @@
 const express = require('express');
 const { body, checkSchema, check } = require('express-validator');
-const i18n = require('../i18n/language')
+const i18n = require('../i18n/language').default
 
 const router = express.Router()
 

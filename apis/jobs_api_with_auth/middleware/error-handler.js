@@ -9,6 +9,12 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     msg: err.message || i18n[req.lang].SOMETHING_WENT_WRONG
   }
 
+  try {
+    customError.msg = i18n[req.lang][err.message].replace('{id}', err.id)
+  } catch (error) {
+    console.log('error', error)
+  }
+
   // if (err instanceof CustomAPIError) {
   //   return res.status(err.statusCode).json({ msg: err.message })
   // }

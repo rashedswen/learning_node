@@ -1,5 +1,5 @@
 module.exports = {
-    "ar" : {
+    "ar": {
         "NO_JOB_WITH_THIS_ID": "لا توجد وظيفة بهذا id {id} موجودة",
         "DUPLICATED_FIELD": "حقل مكرر {field}، يرجى اختيار قيمة أخرى",
         "SOMETHING_WENT_WRONG": "حدث خطأ ما، يرجى المحاولة مرة أخرى لاحقاً",
@@ -8,7 +8,7 @@ module.exports = {
         "COMPANY_OR_POSITION_CANNOT_BE_EMPTY": "الشركة أو المنصب لا يمكن أن يكون فارغًا",
         "FIELD_IS_NOT_VALID": "الحقل {field} غير صالح"
     },
-    "en" : {
+    "en": {
         "NO_JOB_WITH_THIS_ID": "No job with this id {id} found",
         "DUPLICATED_FIELD": "Duplicated fields {field}, please choose another value",
         "SOMETHING_WENT_WRONG": "Something went wrong try again later",
